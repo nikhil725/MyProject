@@ -1,0 +1,52 @@
+<div  fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes" >
+     <div *ngIf="note.reminder!=null"> 
+    <div fxLayout="row wrap">
+    <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
+      <mat-card-header>
+        <b>{{note.title}}</b>
+      </mat-card-header>
+      <mat-card-header>
+        {{note.description}}
+      </mat-card-header>
+       <div>
+         <div>
+              <button type="submit" mat-menu-item (click)="updateNote(note,'false')">
+              <mat-icon>unarchive</mat-icon>
+              </button>
+
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+              <mat-menu #color="matMenu">
+                <div>
+                  <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+                </div>
+              </mat-menu>
+            </div>
+
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+
+              <mat-menu #menu="matMenu">
+
+                <button type="submit" mat-menu-item (click)="deleteNote(note,'true')">
+              <span>Delete Forever</span>
+              </button>
+
+            <button type="submit" mat-menu-item>
+
+            <span>Restore</span>
+            </button>
+            </mat-menu>
+         </div>
+       </div>
+    </mat-card>
+     </div> 
+    </div>
+  </div>

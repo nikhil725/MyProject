@@ -1,0 +1,115 @@
+<div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+      <div *ngFor="let note of notes">
+      <div *ngIf="note.reminder!=null" class="mat-div">
+
+        <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 100PX; MARGIN-TOP: 50PX; height: max-content">
+
+          <div style="margin-left: 90%;">
+            <img src="{{unpinSvg}}" (click)="updateNote(note,'true','pin')">
+          </div>
+          <mat-card-header>
+            <b>{{note.title}}</b>
+          </mat-card-header>
+          <mat-card-header>
+            {{note.description}}
+          </mat-card-header>
+
+          <div *ngIf="note.reminder!=null">
+            <div mat-menu-item fxLayout="row" style="background-color:lightblue;">
+              <div style="font-size: 12px;">
+                <mat-icon>schedule</mat-icon>
+                <label>{{note.reminder|date:'MMM dd,y, hh:mm a'}}</label>
+              </div>
+              <div>
+                    <img src="{{clearSvg}}" (click)="reminderUpdate(note,'null','reminder')">
+                  </div>
+            </div>
+          </div>
+
+          <div fxLayout="row">
+
+            <button mat-icon-button [matMenuTriggerFor]="reminder">
+                <img src="{{reminderSvg}}">
+              </button>
+
+            <mat-menu #reminder="matMenu">
+              <div>
+                <button type="submit" mat-menu-item>
+                    <b>Reminder:</b>
+                  </button>
+              </div>
+              <div>
+                <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Today','reminder')">
+                    <span>Later today: </span>
+                    <span>8:00PM</span>
+                  </button>
+              </div>
+
+              <div>
+                <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Tomorrow','reminder')">
+                    <span>Tomorrow: </span>
+                    <span>8:00AM</span>
+                  </button>
+              </div>
+
+              <div>
+                <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Tomorrow','reminder')">
+                    <span>Next Week: </span>
+                    <span>Mon,8:00AM</span>
+                  </button>
+              </div>
+
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="calender">
+                <mat-icon>schedule</mat-icon>
+                <span>Pick date & time</span>
+              </button>
+              </div>
+
+                <mat-menu #calender="matMenu">
+                  <div>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field> 
+                  </div>
+                  <button mat-icon-button type="submit">submit</button>
+                </mat-menu>
+              
+            </mat-menu>
+
+            <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
+              <mat-icon>archive</mat-icon>
+              </button>
+
+
+            <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+            <mat-menu #color="matMenu">
+              <div>
+                <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+              </div>
+            </mat-menu>
+
+
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            <mat-menu #menu="matMenu">
+              <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')">
+                  <mat-icon>delete</mat-icon>
+                  <span>delete note</span>
+                </button>
+            </mat-menu>
+
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<form class="example-container" #loginFrom="ngForm" (ngSubmit)="login()">
+<h2>Login page</h2>
+<div class="logincontainer">
+  <mat-form-field>
+    <input matInput placeholder="Email_Id" name="email" [(ngModel)]="model.email">
+  </mat-form-field>
+</div>
+  <div class="logincontainer">
+  <mat-form-field>
+    <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="model.password">
+  </mat-form-field>
+  </div>
+  
+<div class="logincontainer">
+  <!-- <button mat-raised-button>Basic</button> -->
+  <button mat-raised-button color="primary" type="submit">Login</button>
+  <div class="row">
+  <a mat-button routerLink="/sign-up" >Register</a>
+  <a mat-button routerLink="/forgot" >forgot password</a>
+
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<div fxLayoutAlign="center center">
+  <mat-card style="width:41%; padding: 0px; MARGIN-LEFT: 200PX; MARGIN-TOP: 30PX;">
+    <div contenteditable='true' class="editable" (click)="show=!show" *ngIf="!show">
+      Take a note..
+    </div>
+  </mat-card>
+</div>
+
+<div fxLayoutAlign="center center" *ngIf="show" style="margin-top: 15px;">
+
+  <mat-card style="width: 41%; padding: 5px; MARGIN-LEFT: 200PX; MARGIN-TOP: 60PX;">
+    <div style="font-weight: bold; padding: 10px 5px;" contenteditable='true' data-text='Title' class="edit line-height" name="title"
+      (input)="model.title=$event.target.innerHTML"></div>
+    <div style="padding: 12px 5px 15px 5px;" contenteditable='true' data-text='Take a note..' class="edit line-height" name="description"
+      (input)="model.description=$event.target.innerHTML"></div>
+
+    <mat-card-actions>
+      <button type="submit" mat-button style="margin-left: 80%;" (click)="createNote()">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!---------------- Pin div ---------------------->
+<!-- <div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes">
+      <div *ngIf="note.pin=== true && note.trash=== false && note.archive=== false">
+       
+        <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 100PX; MARGIN-TOP: 50PX; height: max-content">
+
+          <div style="margin-left: 90%;">
+            <img src="{{unpinSvg}}" (click)="updateNote(note,'false','pin')">
+          </div>
+           <div (click)="openDialogForUpdate(note)">
+          <mat-card-header>
+            <b>{{note.title}}</b>
+          </mat-card-header>
+          <mat-card-header>
+            {{note.description}}
+          </mat-card-header>
+           </div>
+          <div *ngIf="note.reminder!=null">
+
+            <div mat-menu-item fxLayout="row">
+              <mat-chip-list>
+                <mat-chip color="primary" selected="true" class="matchip">
+                  <mat-icon style="color: #fafafa;">schedule</mat-icon>
+                  <label>{{note.reminder|date:'MMM dd,y, hh:mm a'}}</label>
+                  <img src="{{clearSvg}}" (click)="reminderUpdate(note,'null','reminder')">
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+
+          <div fxLayout="row">
+            <button mat-icon-button [matMenuTriggerFor]="reminder">
+                <img src="{{reminderSvg}}">
+              </button>
+
+            <mat-menu #reminder="matMenu">
+              <div>
+                <button type="submit" mat-menu-item>
+                    <b>Reminder:</b>
+                  </button>
+              </div>
+              <div>
+                <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Today','reminder')">
+                    <span>Later today: </span>
+                    <span>8:00PM</span>
+                  </button>
+              </div>
+
+              <div>
+                <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Tomorrow','reminder')">
+                    <span>Tomorrow: </span>
+                    <span>8:00AM</span>
+                  </button>
+              </div>
+
+              <div>
+                <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Tomorrow','reminder')">
+                    <span>Next Week: </span>
+                    <span>Mon,8:00AM</span>
+                  </button>
+              </div>
+
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="calender">
+                <mat-icon>schedule</mat-icon>
+                <span>Pick date & time</span>
+              </button>
+              </div>
+
+              <mat-menu #calender="matMenu">
+                <div>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <button mat-icon-button type="submit">submit</button>
+              </mat-menu>
+
+            </mat-menu>
+
+            <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
+              <mat-icon>archive</mat-icon>
+              </button>
+
+
+            <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+            <mat-menu #color="matMenu">
+              <div>
+                <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+              </div>
+            </mat-menu>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            <mat-menu #menu="matMenu">
+              <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')">
+                  <mat-icon>delete</mat-icon>
+                  <span>delete note</span>
+                </button>
+            </mat-menu>
+
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-------------------- note div ------------------>
+<div>Pinned</div>
+<div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes">
+      <div *ngIf="note.pin=== true && note.trash=== false && note.archive=== false">
+        <!-- <div *ngFor="let note of notes | notePipe: {Pin:true, Trash:false, Archive:false}" style="margin-left: 300px;">  -->
+        <app-common [note]="note"></app-common> 
+ </div>
+    </div>
+  </div>
+</div>
+<div>other</div>
+<div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+    <div *ngFor="let note of notes">
+      <div *ngIf="note.trash=== false && note.archive=== false && note.pin=== false">
+        <div fxLayout="row wrap">
+           <app-common [note]="note"></app-common> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

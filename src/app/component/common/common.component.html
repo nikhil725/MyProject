@@ -1,0 +1,200 @@
+<mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content ">
+        <div *ngIf="note.image">
+            <img class="image-class"[src]="note.imageString"/>
+            <!-- <mat-icon (click)="deleteImage(note)">close</mat-icon> -->
+          </div>
+            <div style="margin-left: 90%;">
+              <img src="{{pinSvg}}" (click)="checkStatus(note,'true','pin')">
+            </div>
+
+            <div (click)="openDialogForUpdate(note)">
+            <mat-card-header>
+              <b>{{note.title}}</b>
+            </mat-card-header>
+
+            <mat-card-header>
+              {{note.description}}
+            </mat-card-header>  
+            </div>
+            <div *ngIf="note.labels!=null">
+              <div *ngFor="let label of note.labels">
+                <div fxLayout="row" fxLayoutGap="5px">
+                  <div>
+                    <mat-chip-list>
+                      <mat-chip>{{label.name}}
+                        <img src="{{clearSvg}}" (click)="removeLabel(false, note.noteId, label.labelId)">
+                      </mat-chip>
+                    </mat-chip-list>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="note.collaboratorName!=null">
+              <mat-chip-list>
+                <mat-chip>Shared from:{{note.collaboratorName}}</mat-chip>
+              </mat-chip-list>
+            </div>
+            <div mat-menu-item fxLayout="row">
+              <mat-chip-list>
+                <mat-chip color="primary" selected="true" class="matchip">
+                  <mat-icon style="color: #fafafa;">schedule</mat-icon>
+                  <label>{{note.reminder|date:'MMM dd,y, hh:mm a'}}</label>
+                  <img src="{{clearSvg}}" (click)="reminderUpdate(note,'null','reminder')">
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+            <!-- <div *ngIf="note.reminder!=null">
+               <div mat-menu-item fxLayout="row" style="background-color:brown;">
+              <div style="font-size: 12px;">
+                <label>{{note.reminder}}</label>
+              </div>
+            </div>  -->
+
+            <div fxLayout="row wrap">
+
+              <button mat-icon-button [matMenuTriggerFor]="reminder">
+                <img src="{{reminderSvg}}">
+              </button>
+
+              <mat-menu #reminder="matMenu">
+                <div>
+                  <button type="submit" mat-menu-item>
+                    <b>Reminder:</b>
+                  </button>
+                </div>
+                <div>
+                  <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Today','reminder')">
+                    <span>Later today: </span>
+                    <span>8:00PM</span>
+                  </button>
+                </div>
+
+                <div>
+                  <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Tomorrow','reminder')">
+                    <span>Tomorrow: </span>
+                    <span>8:00AM</span>
+                  </button>
+                </div>
+
+                <div>
+                  <button type="submit" mat-menu-item (click)="reminderUpdate(note,'Tomorrow','reminder')">
+                    <span>Next Week: </span>
+                    <span>Mon,8:00AM</span>
+                  </button>
+                </div>
+
+                <div>
+                  <button mat-icon-button [matMenuTriggerFor]="calender">
+                <mat-icon>schedule</mat-icon>
+                <span>Pick date & time</span>
+              </button>
+                </div>
+
+                <mat-menu #calender="matMenu">
+                  <div>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <button mat-icon-button type="submit">submit</button>
+                </mat-menu>
+
+              </mat-menu>
+              <div>
+                <button type="submit" mat-menu-item (click)="openDialog(note)">
+                  <mat-icon>person_add</mat-icon>
+                </button>
+
+              </div>
+
+              <div>
+                <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
+                    <mat-icon>archive</mat-icon>
+                </button>
+              </div>
+
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="color">
+                  <mat-icon>color_lens</mat-icon>
+                </button>
+
+                <mat-menu #color="matMenu">
+                  <div>
+                    <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNote(note,'true','color')">
+                  </a>
+                  </div>
+                </mat-menu>
+              </div>
+
+               <div>
+                <button mat-icon-button>
+                  <mat-icon for="file">photo</mat-icon>
+        
+                <input type="file" (change)="fileInput($event.target.files,note.noteId)">
+
+              </button>
+              </div>
+
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                 <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                  <button type="submit" mat-menu-item (click)="updateNote(note,'true', 'trash')"> -->
+                  <!-- <mat-icon>delete</mat-icon> -->
+                   <span>delete note</span> 
+                </button>
+                  <!-- change label tag -->
+                  <div>
+                    <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="getLabels()"> 
+                  <span>change label</span>
+                  </button>
+                  </div>
+                  <mat-menu #label="matMenu">
+
+                    <div fxLayout="column" fxLayoutGap="20px">
+                      <div>
+                        <b>label note</b>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <input matInput placeholder="Search name">
+                        </mat-form-field>
+                      </div>
+                      <div *ngIf="labels!=null">
+                        <div *ngFor="let label of labels">
+                          <label>
+                            <input type="checkbox" 
+                             name="labels" 
+                             value="{{label.name}}"
+                             [(ngModel)]="label.checked"
+                             (ngModelChange)="addLabelOnNote($event, label.labelId, note.noteId)"/>
+                              
+                              {{label.name}}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-menu>
+                  <button type="submit" mat-menu-item>
+                  <span>change labels</span>
+                </button>
+                </mat-menu>
+              </div>
+            </div>
+            <div *ngFor="let linkObj of note.urlPromise | async" style="margin-left:-4vh;">
+              <div fxLayout="row" style="width:100px">
+                <div fxFlex="column" fxFlexAlign="start" style="margin-left:0">
+                  <img [src]="linkObj.url_Image" align='left' hspace='8' vspace='8' width='56px' height='56px'>
+                </div>
+                <div fxFlex="column" style="width:150px">
+                  <div style="word-wrap: break-word"><b> {{linkObj.url_Title|truncate:40}}</b></div>
+                  <div style="word-wrap: break-word">{{linkObj.url_Domain}}</div>
+                </div>
+              </div>
+            </div>
+          </mat-card>

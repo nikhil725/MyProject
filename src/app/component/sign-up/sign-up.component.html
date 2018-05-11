@@ -1,0 +1,32 @@
+
+
+ <form class="example-container" #registrationFrom="ngForm" (ngSubmit)="register()">
+<div class="signup-screen">
+   <div class="space-bot text-center">
+     <h1>Sign Up</h1>
+     <div class="divider"></div>
+         </div>
+    <div class="form-register">
+  <mat-form-field>
+    <input matInput placeholder="Name" name="name" [(ngModel)]="model.name">
+  </mat-form-field>
+
+  <div class="logincontainer">
+  <mat-form-field>
+    <input matInput placeholder="Email" name="email" [(ngModel)]="model.email">
+  </mat-form-field>
+
+   <div class="logincontainer">
+  <mat-form-field>
+    <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="model.password">
+  </mat-form-field>
+  
+<div class="logincontainer">
+  <!-- <button mat-raised-button>Basic</button> -->
+  <button type="submit">Submit</button>
+</div>
+   </div>
+  </div>
+    </div>
+</div>
+ </form>
