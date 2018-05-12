@@ -58,6 +58,7 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
     console.log('in get service');
+    this.refreshNote();
     this.getAllnotes();
   }
 
@@ -71,7 +72,9 @@ export class NoteComponent implements OnInit {
   }
 
   refreshNote() {
-    this.noteService.getAllNotes();
+    this.noteService.getAllNotes().subscribe(res=>{
+    console.log(res);
+    })
   }
   getAllnotes(): any {
 
