@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { User } from '../service/user.model';
 import { Headers } from '@angular/http/src/headers';
@@ -34,6 +34,14 @@ export class UserService {
     }
   }
 
+//search
+private searchSubjcet=new Subject<any>();//ap
+searchObservable$=this.searchSubjcet.asObservable();//emitts data continousaly
+
+onDataChangeInSearch(data: any) {//ap
+console.log(data)
+this.searchSubjcet.next(data);
+}
   registerUser(path, model): Observable<any> {
     console.log('in side regester', path, model);
     var urlpath;
@@ -48,6 +56,7 @@ export class UserService {
     return this.http.post<any>(this.urlpath, model, { observe: 'response' })
   }
 
+//3
   getService(path): Observable<any> {
     
     this.urlpath = this.rootUrl.concat(path);

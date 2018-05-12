@@ -15,9 +15,14 @@
         <mat-icon>refresh</mat-icon>
       </button>
     </div>
-    <input matInput aria-label="Search" autocomplete="off" placeholder="search" value name="q" role="combobox">
-
-        <div class="login-design">
+    
+   <div>
+      <form [formGroup]="homeForm">
+        <mat-icon>search</mat-icon>
+        <input type='text' style="height: 46px;width:350%;" placeholder="Search ..." [formControl]="inputFormControl">
+      </form>
+    </div>
+    <div class="login-design">
       <button mat-icon-button [matMenuTriggerFor]="login">
                 <img src="/assets/icons/account.svg">
               </button>

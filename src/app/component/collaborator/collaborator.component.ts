@@ -33,7 +33,7 @@ export class CollaboratorComponent implements OnInit {
       this.user = response;
       console.log('User information', this.user);
     });
-     this.noteService.getNotes().subscribe(res => {
+     this.noteService.getAllNotes().subscribe(res => {
     this.notes = res;
     console.log('notes in side collaborator',this.notes);
     });

@@ -33,6 +33,9 @@ import { CommonComponent } from './component/common/common.component';
 import { TruncatePipe } from './truncate.pipe';
 import { UpdateComponent } from './component/update/update.component';
 import { ColorToolDirective } from './color-tool.directive';
+import { SearchfilterPipe } from './searchfilter.pipe';
+import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule} from '@angular/forms'
+
 
 @NgModule({
   declarations: [
@@ -50,7 +53,7 @@ import { ColorToolDirective } from './color-tool.directive';
     ResetpasswordComponent,
     CollaboratorComponent,  
     Filter, 
-    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective
+    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective, SearchfilterPipe
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,7 @@ import { ColorToolDirective } from './color-tool.directive';
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,ReactiveFormsModule
   ],
   exports: [],
   entryComponents:[LabelComponent,CollaboratorComponent, UpdateComponent],

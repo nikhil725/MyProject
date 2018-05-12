@@ -3,17 +3,33 @@ import { UserService } from "./user.service"
 import { Observable } from 'rxjs/Observable';
 import { UserNotes } from '../object/userNotes';
 import { Label } from '../object/Label';
+import { Subject } from 'rxjs/Subject';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class NoteService {
 
+  private NoteSubject = new Subject<any>();
   constructor(private userService: UserService) { }
 
+  //step 2
   getNotes(): Observable<UserNotes[]> {
     return this.userService.getService('getNotes');
   }
 
+  getAllNotes(): Observable<HttpResponse<any>> {
+    setTimeout(() => {
+      this.loadAllNotes();
+    });
+    return this.NoteSubject.asObservable();
+  }
+
+  loadAllNotes(): void {
+    let path = "getNotes";
+    this.userService.getService(path).toPromise().then((res) => {
+      this.NoteSubject.next(res);
+    });
+  }
   createNotes(note): Observable<any> {
     return this.userService.registerUser('createNotes', note);
   }
@@ -32,7 +48,6 @@ export class NoteService {
   updateNotes(note, status, field): Observable<any> {
 
     if (field == 'trash') {
-
       note.trash = status;
       console.log(note);
       this.userService.putService('updateNotes', note).subscribe(response => {
@@ -92,15 +107,15 @@ export class NoteService {
     return this.userService.getUrlInfo('getUrl', model);
 
   }
-  imageUpload(file, noteId){
+  imageUpload(file, noteId) {
 
     this.userService.imageUploadService('uploadimage/', file, noteId).subscribe(response => {
       console.log('image response', response);
-  
+
     });
   }
 
-  deleteImage(noteId): Observable<any>{
-    return this.userService.deleteService('deleteimage/'+ noteId);
+  deleteImage(noteId): Observable<any> {
+    return this.userService.deleteService('deleteimage/' + noteId);
   }
 }

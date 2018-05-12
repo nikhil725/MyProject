@@ -10,6 +10,7 @@ import { Label } from '../../object/Label';
 import { CollaboratorComponent } from '../../component/collaborator/collaborator.component';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { UpdateComponent } from '../../component/update/update.component';
+import { FormsModule, FormGroup, FormControl, FormBuilder } from '@angular/forms'
 
 @Component({
   selector: 'app-note',
@@ -24,37 +25,43 @@ export class NoteComponent implements OnInit {
   urlRes: UrlResponse;
   notes: UserNotes[];
   //colors : ColorList[];
+  //search
+  noteForm: FormGroup;
+  inputFormControl: FormControl;
+  searchText: string;
 
   pinSvg = '/assets/icons/pin.svg';
   unpinSvg = '/assets/icons/unpin.svg';
   reminderSvg = '/assets/icons/reminder.svg'
   clearSvg = '/assets/icons/clear.svg'
   constructor(private noteService: NoteService, private labelService: LabelService,
-    private router: Router, private dialog: MatDialog) { }
+    private router: Router, private dialog: MatDialog, private userService: UserService) {
+
+    userService.searchObservable$.subscribe(
+      formData => {
+        this.searchText = formData;
+        debugger;
+        console.log("in note component, ", formData);
+      });
+  }
+
+
+  // constructor(private commonService:HttputilService,private noteService: NoteService, private dialog: MatDialog) {
+  // commonService.searchObservable$.subscribe(
+  // formData => {
+  // this.searchText = formData;
+  // console.log("in note component, ", formData);
+  // });
+  // }
+
+
 
   ngOnInit() {
     console.log('in get service');
-    this.noteService.getNotes().subscribe(res => {
-  
-      this.notes = res.map(noteObj => {
-        if (this.urlFormat(noteObj.description))
-          noteObj.urlPromise = this.getUrlData(noteObj.description).map(res => {
-            console.log(res);
-            return res.body;
-          });
-           console.log(noteObj);
-        return noteObj;
-      })
-       this.notes.forEach(note=>{
-             note.imageString = 'data:image/jpg;base64,'+note.image;
-       })
-      
-      console.log('notes..', this.notes);
-    });
+    this.getAllnotes();
   }
 
-   openDialogForUpdate(note) {
-
+  openDialogForUpdate(note) {
     this.dialog.open(UpdateComponent, {
       data: note,
 
@@ -63,14 +70,34 @@ export class NoteComponent implements OnInit {
     });
   }
 
-  createNote() {
+  refreshNote() {
+    this.noteService.getAllNotes();
+  }
+  getAllnotes(): any {
 
-    console.log(this.model);
-    console.log("in create note");
+    this.noteService.getNotes().subscribe(res => {
+      this.notes = res.map(noteObj => {
+        if (this.urlFormat(noteObj.description))
+          noteObj.urlPromise = this.getUrlData(noteObj.description).map(res => {
+            console.log(res);
+            return res.body;
+          });
+        console.log(noteObj);
+        return noteObj;
+      })
+      this.notes.forEach(note => {
+        note.imageString = 'data:image/jpg;base64,' + note.image;
+      })
+      console.log('notes..', this.notes);
+    });
+  }
+  createNote() {
     this.noteService.createNotes(this.model).subscribe(response => {
+      this.refreshNote();
       console.log("successfull", response);
 
     });
+
   }
 
   updateNote(note, status, field) {
@@ -179,6 +206,7 @@ export class NoteComponent implements OnInit {
   }
 
   getUrlData(description: string): Observable<any> {
+
     let url = this.urlFormat(description);
     if (!url) {
       let subjectObj = new Subject<any>();
@@ -188,15 +216,18 @@ export class NoteComponent implements OnInit {
   }
 
 
-urlFormat(text) : Array <string> {
-  console.log("text222",text);
-  var urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-  return text.match(urlRegex);
-  
-}
-fileInput(file: File, noteId) {
+  urlFormat(text): Array<string> {
+    if (!text) {
+      text = '';
+    }
+    console.log("text222", text);
+    var urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+    return text.match(urlRegex);
+
+  }
+  fileInput(file: File, noteId) {
     console.log('file', file);
     this.noteService.imageUpload(file, noteId);
-}
+  }
 
 }

@@ -20,9 +20,8 @@ import { UpdateComponent } from '../../component/update/update.component';
 export class CommonComponent implements OnInit {
 
   @Input() note: any;
-model: any = {};
+  model: any = {};
   labels: Label[];
-
   urlRes: UrlResponse;
   notes: UserNotes[];
   // colors : ColorList[];
@@ -36,49 +35,34 @@ model: any = {};
     private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
-       console.log('in get service');
-    this.noteService.getNotes().subscribe(res => {
-  
-      this.notes = res.map(noteObj => {
-        if (this.urlFormat(noteObj.description))
-          noteObj.urlPromise = this.getUrlData(noteObj.description).map(res => {
-            console.log(res);
-            return res.body;
-          });
-           console.log(noteObj);
-        return noteObj;
-      })
-       this.notes.forEach(note=>{
-             note.imageString = 'data:image/jpg;base64,'+note.image;
-       })
+  }
+  reLoadNotes() {
 
-      console.log('notes..', this.notes);
-    });
+    this.noteService.getAllNotes();
   }
 
+  checkStatus(note, status, field, ) {
 
-  checkStatus(note, status, field,){
-
-    if(status== 'true'){  
+    if (status == 'true') {
       this.pinNote(note, true, field);
-    }else{
+    } else {
       this.unpinNote(note, false, field);
     }
   }
 
-  pinNote(note,status,field){
+  pinNote(note, status, field) {
 
- this.noteService.updateNotes(note, status, field).subscribe(response => {
+    this.noteService.updateNotes(note, status, field).subscribe(response => {
       console.log("successfull", response)
     });
   }
 
-  unpinNote(note, status, field){
-this.noteService.updateNotes(note, status, field).subscribe(response => {
+  unpinNote(note, status, field) {
+    this.noteService.updateNotes(note, status, field).subscribe(response => {
       console.log("successfull", response)
     });
   }
- openDialogForUpdate(note) {
+  openDialogForUpdate(note) {
     this.dialog.open(UpdateComponent, {
       data: note,
 
@@ -210,14 +194,14 @@ this.noteService.updateNotes(note, status, field).subscribe(response => {
     return this.noteService.getUrlData(url)
   }
 
-urlFormat(text) : Array <string> {
-  console.log("text222",text);
-  var urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-  return text.match(urlRegex);
-  
-}
-fileInput(file: File, noteId) {
+  urlFormat(text): Array<string> {
+    console.log("text222", text);
+    var urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+    return text.match(urlRegex);
+
+  }
+  fileInput(file: File, noteId) {
     console.log('file', file);
     this.noteService.imageUpload(file, noteId);
-}
+  }
 }

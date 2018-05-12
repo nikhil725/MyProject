@@ -13,6 +13,8 @@ import { AuthGuard,LoggedInAuthGuard } from './auth/index';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import {ResetpasswordComponent} from './component/resetpassword/resetpassword.component';
 import { UpdateComponent } from './component/update/update.component';
+import {FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms'
+
 
 // redirectTo will redirect the first page to login page by default
 // path :'login' will redirect to LoginComponent in login.component.ts file.
