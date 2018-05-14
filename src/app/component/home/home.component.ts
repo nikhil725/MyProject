@@ -29,15 +29,6 @@ export class HomeComponent implements OnInit {
             }); 
          }
 
-// constructor(private builder: FormBuilder,private router:Router,private commonService:HttputilService,
-// private dialog: MatDialog) {
-
-// this.inputFormControl = new FormControl();
-// this.homeForm = this.builder.group({
-// inputFormControl: this.inputFormControl //get home html input
-// }); 
-
-
   ngOnInit() {
     console.log('in side home');
     this.noteService.getLabels().subscribe(res => {
@@ -47,12 +38,11 @@ export class HomeComponent implements OnInit {
     this.searchText();
   }
 
-  //to search my text
+  //This method use to search text
   searchText(){
       console.log("dsgsdsdgsdgsdgsdgsdgsdgshfdhfdh",this.inputFormControl);
     this.homeForm.valueChanges.subscribe(
       (formData) => {
-       
         this.userService.onDataChangeInSearch(formData.inputFormControl);
       });
   }

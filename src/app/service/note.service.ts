@@ -17,7 +17,7 @@ export class NoteService {
     return this.userService.getService('getNotes');
   }
 
-  getAllNotes(): Observable<HttpResponse<any>> {
+  getAllNotes(): Observable<UserNotes[]> {
     setTimeout(() => {
       this.loadAllNotes();
     });

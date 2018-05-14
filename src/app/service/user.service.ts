@@ -23,6 +23,7 @@ export class UserService {
   constructor(private http: HttpClient) {
 
     this.setAuthorization();
+    
   }
 
   setAuthorization() {
@@ -33,12 +34,11 @@ export class UserService {
       this.httpOptions.headers = this.httpOptions.headers.delete("Authorization")
     }
   }
-
-//search
-private searchSubjcet=new Subject<any>();//ap
+  
+private searchSubjcet=new Subject<any>();
 searchObservable$=this.searchSubjcet.asObservable();//emitts data continousaly
 
-onDataChangeInSearch(data: any) {//ap
+onDataChangeInSearch(data: any) {
 console.log(data)
 this.searchSubjcet.next(data);
 }

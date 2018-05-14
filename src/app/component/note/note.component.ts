@@ -72,13 +72,15 @@ export class NoteComponent implements OnInit {
   }
 
   refreshNote() {
-    this.noteService.getAllNotes().subscribe(res=>{
-    console.log(res);
-    })
+    this.noteService.loadAllNotes();
+    // getAllNotes().subscribe(res=>{
+    // console.log(res);
+    // })
   }
   getAllnotes(): any {
 
-    this.noteService.getNotes().subscribe(res => {
+    // this.noteService.getNotes().subscribe(res => {
+    this.noteService.getAllNotes().subscribe(res => {
       this.notes = res.map(noteObj => {
         if (this.urlFormat(noteObj.description))
           noteObj.urlPromise = this.getUrlData(noteObj.description).map(res => {
