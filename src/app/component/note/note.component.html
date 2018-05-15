@@ -139,7 +139,7 @@
 
 <div>Pinned</div>
 <div class="class-container" fxLayoutAlign="center center">
-  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="mat-div" fxFlex="900px">
     <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes | searchfilter: searchText ">
       <div *ngIf="note.pin=== true && note.trash=== false && note.archive=== false">
         
@@ -154,7 +154,7 @@
 
 <div>other</div>
 <div class="class-container" fxLayoutAlign="center center">
-  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+  <div fxLayout="row wrap"  fxLayoutAlign="space-between center"  class="mat-div" fxFlex="900px">
     <div *ngFor="let note of notes |searchfilter:searchText">
       <div *ngIf="note.trash=== false && note.archive=== false && note.pin=== false">
         

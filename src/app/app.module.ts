@@ -34,7 +34,10 @@ import { TruncatePipe } from './truncate.pipe';
 import { UpdateComponent } from './component/update/update.component';
 import { ColorToolDirective } from './color-tool.directive';
 import { SearchfilterPipe } from './searchfilter.pipe';
-import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule} from '@angular/forms'
+import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule} from '@angular/forms';
+import { LabelonNoteComponent } from './labelon-note/labelon-note.component';
+import { LabelonnoteComponent } from './component/src/app/component/labelonnote/labelonnote.component';
+import { LabelnotePipe } from './labelnote.pipe'
 
 
 @NgModule({
@@ -53,7 +56,7 @@ import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule} from '@angular
     ResetpasswordComponent,
     CollaboratorComponent,  
     Filter, 
-    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective, SearchfilterPipe
+    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective, SearchfilterPipe, LabelonNoteComponent, LabelonnoteComponent, LabelnotePipe
   ],
   imports: [
     BrowserModule,

@@ -173,7 +173,7 @@ export class CommonComponent implements OnInit {
 
   removeLabel(status, noteId, labelId) {
 
-    this.noteService.removeLabelOnNote(status, labelId, noteId);
+    this.noteService.removeLabelOnNote(status, noteId, labelId);
     console.log(status, noteId, labelId);
   }
 
