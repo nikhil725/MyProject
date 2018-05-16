@@ -1,13 +1,13 @@
-<div style="height: 100vh;margin-top: -8px;">
+<div>
     <mat-toolbar appColorTool style="background-color:rgb(255, 187, 0);">
-    <div fxFlex="100">
+    
          <div  fxFlex="20" fxLayout="row" fxLayoutGap="10px">
             <button mat-icon-button (click)="sidenav.toggle()" href="#"> 
              <mat-icon>menu</mat-icon>
              </button>
              <span>ToDo App</span>
           </div>
-          <div fxLayout="row" fxFlex="60">
+          <div fxFlex="60" fxLayout="row">
             <form [formGroup]="homeForm">
              <mat-icon>search</mat-icon>
              <input type='text' style="height: 46px;width:350%;" placeholder="Search ..." [formControl]="inputFormControl">
@@ -17,10 +17,10 @@
             <button mat-icon-button (click)="refresh()">
             <mat-icon>refresh</mat-icon>
             </button>
-    
                <div class="login-design">
-                <img src="/assets/icons/account.svg">
+             
                  <button mat-icon-button [matMenuTriggerFor]="login">
+                      <img src="/assets/icons/account.svg">
                  </button>
                </div>
                   <mat-menu #login="matMenu">
@@ -51,7 +51,7 @@
           </div>
           </mat-menu>
       </div>
-    </div>  
+    
   </mat-toolbar> 
 
 <!-- <mat-toolbar appColorTool style="background-color:rgb(255, 187, 0);">
@@ -127,7 +127,7 @@
           <button mat-menu-item>
             <span>Labels</span>
 
-            <button mat-button type="submit" (click)="openLabelDialog()" style="margin-left:40%;">
+            <button mat-button type="submit" (click)="openDialog()" style="margin-left:40%;">
                 <b>EDIT</b>
               </button>
           </button>

@@ -35,6 +35,7 @@
               </mat-chip-list>
             </div>
             <div mat-menu-item fxLayout="row">
+               <div *ngIf="note.reminder!=null">
               <mat-chip-list>
                 <mat-chip color="primary" selected="true" class="matchip">
                   <mat-icon style="color: #fafafa;">schedule</mat-icon>
@@ -43,12 +44,13 @@
                 </mat-chip>
               </mat-chip-list>
             </div>
-            <!-- <div *ngIf="note.reminder!=null">
+            </div>
+             <!-- <div *ngIf="note.reminder!=null">
                <div mat-menu-item fxLayout="row" style="background-color:brown;">
               <div style="font-size: 12px;">
                 <label>{{note.reminder}}</label>
               </div>
-            </div>  -->
+            </div>   -->
 
             <div fxLayout="row wrap">
 

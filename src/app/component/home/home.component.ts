@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     });
     this.searchText();
   }
-
+  
   //This method use to search text
   searchText(){
       console.log("dsgsdsdgsdgsdgsdgsdgsdgshfdhfdh",this.inputFormControl);

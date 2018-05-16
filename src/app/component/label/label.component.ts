@@ -51,10 +51,10 @@ export class LabelComponent implements OnInit {
       });
   };
 
-  deleteLabel(labelId){
+  deleteLabel(labelId): void {
 
-    this.labelService.deleteLabel(labelId);
-    debugger;
+    this.labelService.deleteLabel(labelId).subscribe(response =>{
+    });
   }
 
 }

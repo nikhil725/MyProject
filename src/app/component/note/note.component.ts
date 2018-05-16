@@ -60,6 +60,7 @@ export class NoteComponent implements OnInit {
     console.log('in get service');
     this.refreshNote();
     this.getAllnotes();
+    this.getLabels();
   }
 
   openDialogForUpdate(note) {

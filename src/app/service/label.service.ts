@@ -13,9 +13,9 @@ constructor(private userService : UserService ) { }
   return this.userService.getService('getLabels');
 }
 
-  deleteLabel(labelId){
+  deleteLabel(labelId): Observable<any>{
 
-    this.userService.deleteService('deleteLabel/'+ labelId);
+    return this.userService.deleteService('deleteLabel/'+ labelId);
     
   }
 
