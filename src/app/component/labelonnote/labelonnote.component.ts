@@ -8,7 +8,6 @@ import { UserNotes } from '../../object/userNotes';
   styleUrls: ['./labelonnote.component.css']
 })
 export class LabelonnoteComponent implements OnInit {
-
 public id;
 public labelId:number;
 model:any;
@@ -24,7 +23,6 @@ notes:UserNotes[];
    this.route.params.subscribe(params => {
       this.id = +params['id'];
       console.log('in dynamic componenet label id :',this.id);
-    
    });
   }
 

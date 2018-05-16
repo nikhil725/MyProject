@@ -13,8 +13,8 @@ import { AuthGuard,LoggedInAuthGuard } from './auth/index';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import {ResetpasswordComponent} from './component/resetpassword/resetpassword.component';
 import { UpdateComponent } from './component/update/update.component';
-import {FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms'
-
+import {FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import { LabelonnoteComponent} from './component/labelonnote/labelonnote.component';
 
 // redirectTo will redirect the first page to login page by default
 // path :'login' will redirect to LoginComponent in login.component.ts file.
@@ -32,7 +32,8 @@ const routes: Routes = [
             { path: 'note', component: NoteComponent },
             { path: 'trash', component: TrashComponent },
             { path: 'archive', component: ArchiveComponent },
-            { path: 'reminder', component: ReminderComponent }
+            { path: 'reminder', component: ReminderComponent },
+            { path: 'labelonnote/:id', component: LabelonnoteComponent}
         ],
     },
     { path: 'forgot', component: ForgotComponent },

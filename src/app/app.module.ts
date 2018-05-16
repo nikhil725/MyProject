@@ -35,9 +35,9 @@ import { UpdateComponent } from './component/update/update.component';
 import { ColorToolDirective } from './color-tool.directive';
 import { SearchfilterPipe } from './searchfilter.pipe';
 import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule} from '@angular/forms';
-import { LabelonNoteComponent } from './labelon-note/labelon-note.component';
-import { LabelonnoteComponent } from './component/src/app/component/labelonnote/labelonnote.component';
-import { LabelnotePipe } from './labelnote.pipe'
+import { LabelonnoteComponent } from './component/labelonnote/labelonnote.component';
+import { LabelnotePipe } from './labelnote.pipe';
+import { TexthiderDirective } from './texthider.directive'
 
 
 @NgModule({
@@ -56,7 +56,7 @@ import { LabelnotePipe } from './labelnote.pipe'
     ResetpasswordComponent,
     CollaboratorComponent,  
     Filter, 
-    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective, SearchfilterPipe, LabelonNoteComponent, LabelonnoteComponent, LabelnotePipe
+    CommonComponent, TruncatePipe, UpdateComponent, ColorToolDirective, SearchfilterPipe, LabelonnoteComponent, LabelonnoteComponent, LabelnotePipe, TexthiderDirective
   ],
   imports: [
     BrowserModule,

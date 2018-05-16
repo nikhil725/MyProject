@@ -1,64 +1,108 @@
 <div style="height: 100vh;margin-top: -8px;">
-
-  <mat-toolbar appColorTool style="background-color:rgb(255, 187, 0);">
+    <mat-toolbar appColorTool style="background-color:rgb(255, 187, 0);">
     <div fxFlex="100">
-    <div  fxLayout="row" fxFlex="20" >
-      <button mat-icon-button (click)="sidenav.toggle()" href="#"> 
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>ToDo App</span>
-    </div>
-    <div fxLayout="row" fxFlex="60">
-      <form [formGroup]="homeForm">
-        <mat-icon>search</mat-icon>
-        <input type='text' style="height: 46px;width:350%;" placeholder="Search ..." [formControl]="inputFormControl">
-      </form>
-    </div>
-      <div fxLayout="row" fxFlex="20" fxLayoutAlign="end">
-      <button mat-icon-button (click)="refresh()">
-        <mat-icon>refresh</mat-icon>
-      </button>
+         <div  fxFlex="20" fxLayout="row" fxLayoutGap="10px">
+            <button mat-icon-button (click)="sidenav.toggle()" href="#"> 
+             <mat-icon>menu</mat-icon>
+             </button>
+             <span>ToDo App</span>
+          </div>
+          <div fxLayout="row" fxFlex="60">
+            <form [formGroup]="homeForm">
+             <mat-icon>search</mat-icon>
+             <input type='text' style="height: 46px;width:350%;" placeholder="Search ..." [formControl]="inputFormControl">
+             </form>
+          </div>
+         <div fxLayout="row" fxFlex="20" fxLayoutAlign="end">
+            <button mat-icon-button (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+            </button>
     
-    <div class="login-design">
+               <div class="login-design">
                 <img src="/assets/icons/account.svg">
-      <button mat-icon-button [matMenuTriggerFor]="login">
-              </button>
-    </div>
-    <mat-menu #login="matMenu">
-      <div fxLayout="column" fxLayoutGap="20px">
-        <div fxLayout="row" fxLayoutGap="30px">
-          <div>
-            <div class="example-header-image"></div>
-          </div>
-          <div>
-            <button mat-raised-button color="primary">My Account</button>
-          </div>
-        </div>
-        <div fxLayout="row" fxLayoutGap="20px" style="background-color: whitesmoke;height: 74px;margin-left: 21px;">
-          <div>
-
-            <div>
-              <img style="height:30px;margin-top: 10px;" src="/assets/icons/account.svg">
+                 <button mat-icon-button [matMenuTriggerFor]="login">
+                 </button>
+               </div>
+                  <mat-menu #login="matMenu">
+                 <div fxLayout="column" fxLayoutGap="20px">
+                     <div fxLayout="row" fxLayoutGap="30px">
+                       <div>
+                        <div class="example-header-image"></div>
+                       </div>
+                      <div>
+                        <button mat-raised-button color="primary">My Account</button>
+                      </div>
+                     </div>
+              <div fxLayout="row" fxLayoutGap="20px" style="background-color: whitesmoke;height: 74px;margin-left: 21px;">
+                 <div>
+                    <div>
+                      <img style="height:30px;margin-top: 10px;" src="/assets/icons/account.svg">
+                  </div>
+                </div>
+               </div>
+                <div fxLayout="row" fxLayoutGap="70px" class="rowDesign">
+                <div>
+                <button mat-raised-button color="primary">Add Account</button>
+                </div>
+                 <div>
+                   <button type="submit" mat-raised-button color="primary" (click)="signOut()">Sign out</button>
+                </div>
             </div>
-
           </div>
-
-        </div>
-        <div fxLayout="row" fxLayoutGap="70px" class="rowDesign">
-          <div>
-            <button mat-raised-button color="primary">Add Account</button>
-          </div>
-          <div>
-            <button type="submit" mat-raised-button color="primary" (click)="signOut()">Sign out</button>
-          </div>
-        </div>
+          </mat-menu>
       </div>
-    </mat-menu>
-      </div>
-
     </div>  
-  </mat-toolbar>
+  </mat-toolbar> 
 
+<!-- <mat-toolbar appColorTool style="background-color:rgb(255, 187, 0);">
+  <div fxFlex="100" fxLayout="row">
+     <div fxFlex="20" fxLayout="row" fxLayoutGap="10px">
+      <i class="material-icons">menu</i>
+      <span style="margin-top:-4px;">ToDO</span>
+     </div>
+      <div fxFlex.lg="80" fxFlex.xs="50">
+      <i class="material-icons">search</i>
+      </div>
+          <div fxFlex="10" fxlayout="row">
+      <i class="material-icons">refresh</i>
+            <i class="material-icons">reorder</i>
+                  <i class="material-icons ">view_module</i>
+                        <div class="login-design">
+                         <i class="material-icons">account_circle</i> 
+                 <button mat-icon-button [matMenuTriggerFor]="login">
+                 </button>
+               </div>
+                  <mat-menu #login="matMenu">
+                 <div fxLayout="column" fxLayoutGap="20px">
+                     <div fxLayout="row" fxLayoutGap="30px">
+                       <div>
+                        <div class="example-header-image"></div>
+                       </div>
+                      <div>
+                        <button mat-raised-button color="primary">My Account</button>
+                      </div>
+                     </div>
+              <div fxLayout="row" fxLayoutGap="20px" style="background-color: whitesmoke;height: 74px;margin-left: 21px;">
+                 <div>
+                    <div>
+                      <img style="height:30px;margin-top: 10px;" src="/assets/icons/account.svg">
+                  </div>
+                </div>
+
+               </div>
+                <div fxLayout="row" fxLayoutGap="70px" class="rowDesign">
+                <div>
+                <button mat-raised-button color="primary">Add Account</button>
+                </div>
+                 <div>
+                   <button type="submit" mat-raised-button color="primary" (click)="signOut()">Sign out</button>
+                   </div>
+            </div>
+          </div>
+          </mat-menu>
+      </div>
+  </div>
+</mat-toolbar> -->
   <mat-sidenav-container class="example-container">
     <mat-sidenav mode="side" #sidenav opened fxLayout="column">
       <div fxLayout="column">
@@ -90,7 +134,8 @@
         </div>
         <div *ngFor="let label of labels">
           <div>
-            <button mat-menu-item>
+
+            <button [routerLink]="['/home/labelonnote',label.labelId]" mat-menu-item>
                 <mat-icon>label</mat-icon>
                 <span>{{label.name}}</span>
             </button>
