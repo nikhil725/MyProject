@@ -31,6 +31,13 @@ width: 249px;
 max-height:150px;
 }
 
+  .list-view{
+    width: 69%;
+    margin-top: 15px;
+  }
+  .grid-view{
+    margin-top: 15px;
+  }
 .mat-design{
 max-width: 201px;
 margin-top: 15px;

@@ -37,10 +37,10 @@ export class HomeComponent implements OnInit {
     });
     this.searchText();
   }
-  
+
   //This method use to search text
   searchText(){
-      console.log("dsgsdsdgsdgsdgsdgsdgsdgshfdhfdh",this.inputFormControl);
+     
     this.homeForm.valueChanges.subscribe(
       (formData) => {
         this.userService.onDataChangeInSearch(formData.inputFormControl);
@@ -59,5 +59,9 @@ export class HomeComponent implements OnInit {
   signOut(): void {
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  changeCards(){
+    
   }
 }

@@ -14,9 +14,16 @@
              </form>
           </div>
          <div fxLayout="row" fxFlex="20" fxLayoutAlign="end">
+           <div>
             <button mat-icon-button (click)="refresh()">
             <mat-icon>refresh</mat-icon>
             </button>
+           </div>
+          <div>
+          <button mat-icon-button>
+           <mat-icon style="margin-top: 10px;" (click)="changeCards()">view_list</mat-icon>
+           </button>
+         </div> 
                <div class="login-design">
              
                  <button mat-icon-button [matMenuTriggerFor]="login">
