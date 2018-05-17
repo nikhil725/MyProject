@@ -49,6 +49,7 @@ export class LabelComponent implements OnInit {
       .subscribe(response => {
         console.log(" response Label  Created", response);
       });
+      this.noteService.getLabels();
   };
 
   deleteLabel(labelId): void {

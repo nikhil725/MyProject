@@ -198,7 +198,6 @@ export class CommonComponent implements OnInit {
     console.log("text222", text);
     var urlRegex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
     return text.match(urlRegex);
-
   }
   fileInput(file: File, noteId) {
     console.log('file', file);

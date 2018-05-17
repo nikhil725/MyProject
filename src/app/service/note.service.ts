@@ -118,4 +118,9 @@ export class NoteService {
   deleteImage(noteId): Observable<any> {
     return this.userService.deleteService('deleteimage/' + noteId);
   }
+
+    getStatus():Observable<HttpResponse<any>>
+    {
+    return this.userService.getStatus();
+    }
 }

@@ -29,6 +29,8 @@ export class NoteComponent implements OnInit {
   noteForm: FormGroup;
   inputFormControl: FormControl;
   searchText: string;
+  marginTop: string;
+  flexSize: string;
 
   pinSvg = '/assets/icons/pin.svg';
   unpinSvg = '/assets/icons/unpin.svg';
@@ -61,8 +63,16 @@ export class NoteComponent implements OnInit {
     this.refreshNote();
     this.getAllnotes();
     this.getLabels();
-  }
+    this.changeGridCss();
 
+  }
+  changeGridCss() {
+
+    this.noteService.getStatus().subscribe((status) => {
+     this.marginTop = status ? "10px" : "0px";
+      this.flexSize = status ? "100%" : "30%";
+    });
+  }
   openDialogForUpdate(note) {
     this.dialog.open(UpdateComponent, {
       data: note,

@@ -25,6 +25,8 @@ export class UserService {
     this.setAuthorization();
     
   }
+  private listGridView = new Subject<any>();
+    status:boolean; 
 
   setAuthorization() {
     let token = localStorage.getItem('Authorization');
@@ -112,5 +114,22 @@ this.searchSubjcet.next(data);
     };
     
     return this.http.post<any>(this.urlpath, formdata, httpOptions2);
+  }
+
+  gridviewToggle(intial?){
+     if(!intial){
+      this.status = !this.status;
+      if (this.status) {
+          localStorage.setItem('cssclass', 'list-view');
+        } else {
+          localStorage.setItem('cssclass', 'grid-view');
+        }
+    this.listGridView.next(status);
+    }
+  }
+
+  getStatus(){
+      setTimeout(this.gridviewToggle.bind(this,true));
+      return  this.listGridView.asObservable();
   }
   }
