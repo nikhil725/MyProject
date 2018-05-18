@@ -25,5 +25,4 @@ notes:UserNotes[];
       console.log('in dynamic componenet label id :',this.id);
    });
   }
-
 }

@@ -35,13 +35,15 @@
             </div>
             <div mat-menu-item fxLayout="row">
                <div *ngIf="note.reminder!=null">
+                 <div style="margin-left: -19px;">
               <mat-chip-list>
-                <mat-chip color="primary" selected="true" class="matchip">
-                  <mat-icon style="color: #fafafa;">schedule</mat-icon>
+                  <mat-chip color="primary" selected="true" class="matchip">
+                  <mat-icon style="color: #fafafa; margin-right: 2px;">schedule</mat-icon>
                   <label>{{note.reminder|date:'MMM dd,y, hh:mm a'}}</label>
                   <img src="{{clearSvg}}" (click)="reminderUpdate(note,'null','reminder')">
                 </mat-chip>
               </mat-chip-list>
+              </div>
             </div>
             </div>
              <!-- <div *ngIf="note.reminder!=null">
@@ -109,11 +111,7 @@
                 </button>
               </div>
 
-              <div style="margin-left: -39px; margin-top: -3px;">
-                <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
-                    <mat-icon>archive</mat-icon>
-                </button>
-              </div>
+             
 
               <div style=" margin-left: -35px; margin-top: 2px;">
                 <button mat-icon-button [matMenuTriggerFor]="color">
@@ -129,7 +127,12 @@
                 </mat-menu>
               </div>
 
-               <div>
+               <div style="margin-left: -15px; margin-top: -3px;">
+                <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
+                    <mat-icon>archive</mat-icon>
+                </button>
+              </div>
+               <div style="margin-left: -11px;">
                 <button mat-icon-button>
                   <mat-icon for="file">photo</mat-icon>
         

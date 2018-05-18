@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service';
 import { Router } from '@angular/router';
+import { NgForm, FormControl, FormGroupDirective, Validators,FormsModule} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { FormGroup} from '@angular/forms';
 
 
-
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -46,4 +54,14 @@ export class LoginComponent implements OnInit {
     })
     
   }
+  emailControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[a-z0-9+_.-]+@{1}[a-z](.+){1}[a-z]')
+  ]);
+
+  passwordControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[A-Za-z0-9]{5,}$')
+  ]);
+  match = new MyErrorStateMatcher();
 }

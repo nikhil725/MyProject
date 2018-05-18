@@ -1,19 +1,25 @@
 <form class="example-container" #loginFrom="ngForm" (ngSubmit)="login()">
 <h2>Login page</h2>
+
 <div class="logincontainer">
   <mat-form-field>
-    <input matInput placeholder="Email_Id" name="email" [(ngModel)]="model.email">
+    <input matInput placeholder="Email_Id" name="email" [formControl]="emailControl" [errorStateMatcher]="match"  [(ngModel)]="model.email">
+    <mat-error *ngIf="emailControl.hasError('required')">Email Address is required</mat-error>
   </mat-form-field>
 </div>
   <div class="logincontainer">
   <mat-form-field>
-    <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="model.password">
+    <input type="password" matInput placeholder="Password" name="password" [formControl]="passwordControl" [errorStateMatcher]="match" name="password"  [(ngModel)]="model.password" required>
+    <mat-error *ngIf="passwordControl.hasError('password') && !passwordControl.hasError('required')">Please enter a valid password address
+    </mat-error>
+    <mat-error *ngIf="passwordControl.hasError('required')"> Password is <strong> required</strong> </mat-error>
+   <mat-error *ngIf="passwordControl.hasError('pattern') && !passwordControl.hasError('required') ">Password not valid</mat-error>
   </mat-form-field>
   </div>
   
 <div class="logincontainer">
   <!-- <button mat-raised-button>Basic</button> -->
-  <button mat-raised-button color="primary" type="submit">Login</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!emailControl.valid || !passwordControl.valid">Login</button>
   <div class="row">
   <a mat-button routerLink="/sign-up" >Register</a>
   <a mat-button routerLink="/forgot" >forgot password</a>

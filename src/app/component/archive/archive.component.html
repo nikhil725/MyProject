@@ -1,5 +1,5 @@
 <div  fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes" >
-     <div *ngIf="note.reminder!=null"> 
+     <div *ngIf="note.reminder!=null && note.archive === false"> 
     <div fxLayout="row wrap">
     <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX;">
       <mat-card-header>
@@ -10,10 +10,9 @@
       </mat-card-header>
        <div>
          <div>
-              <button type="submit" mat-menu-item (click)="updateNote(note,'false')">
+            <button type="submit" mat-menu-item (click)="updateNote(note,'false')">
               <mat-icon>unarchive</mat-icon>
               </button>
-
             </div>
             <div>
               <button mat-icon-button [matMenuTriggerFor]="color">
@@ -27,7 +26,6 @@
                 </div>
               </mat-menu>
             </div>
-
             <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>

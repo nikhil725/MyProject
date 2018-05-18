@@ -39,7 +39,7 @@ const routes: Routes = [
     { path: 'forgot', component: ForgotComponent },
     { path: 'returnto-signup', component: ReturntoSignupComponent },
     { path: 'collaborator', component: CollaboratorComponent},
-    { path: 'resetpassword/:token', component: ResetpasswordComponent},
+    { path: 'resetpassword', component: ResetpasswordComponent},
     { path: 'update', component: UpdateComponent},
      { path: '**', component: HomeComponent}
 ];

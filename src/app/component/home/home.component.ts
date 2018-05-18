@@ -5,6 +5,7 @@ import { NoteService, UserService } from '../../service';
 import { Label } from '../../object/Label';
 import { Router } from '@angular/router';
 import {FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms'
+import { User } from '../../object/User';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,9 @@ export class HomeComponent implements OnInit {
   profilePic = "assets/icons/account.svg";
   homeForm: FormGroup;
   inputFormControl: FormControl;
+  username:string;
+  useremail:string;
+  user: User;
   constructor(private noteService: NoteService, private dialog: MatDialog, private router: Router,
               private builder: FormBuilder, private userService: UserService)
                {
@@ -36,6 +40,7 @@ export class HomeComponent implements OnInit {
       console.log(this.labels);
     });
     this.searchText();
+    
   }
 
   //This method use to search text
@@ -65,5 +70,14 @@ export class HomeComponent implements OnInit {
 
     this.userService.gridviewToggle();
     debugger;
+  }
+  
+  loggedUser(){
+    this.userService.getUser('getUserById').subscribe(response => {
+      this.user = response;
+      this.username = response.name;
+      this.useremail = response.email;
+      console.log('User information', this.user);
+    });
   }
 }
