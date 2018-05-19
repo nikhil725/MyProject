@@ -1,12 +1,13 @@
 <!-- <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content "> -->
   <mat-card class="example-card" [style.background]="note.color" class="mat-design">
+ 
+   <div *ngIf= "note.image">
+            <img class="image-class"[src]="note.imageString"/>
+          </div> 
     <div style="margin-left: 90%;" class="images">
               <img [src]="fetchIcon(note)" (click)="updateNote(note,'' + !note.pin,'pin'  )">
             </div>    
-    <div *ngIf= "note.image">
-            <img class="image-class"[src]="note.imageString"/>
-            <!-- <mat-icon (click)="deleteImage(note)">close</mat-icon> -->
-          </div>
+            
             <div style="margin-left: 90%;">
               <!-- <img src="{{pinSvg}}" "> -->
             </div>
@@ -131,8 +132,11 @@
               </div>
 
                <div style="margin-left: -15px; margin-top: -3px;">
-                <button type="submit" mat-menu-item (click)="updateNote(note,'true','archive')">
-                    <mat-icon>archive</mat-icon>
+                <button type="submit" mat-menu-item (click)="updateNote(note,'' + !note.archive,'archive')">
+                    <div *ngIf="note.archive; else other_content" style="margin-left: -19px; margin-top: 7px;">
+                        <mat-icon>unarchive</mat-icon>
+                    </div>
+                     <ng-template #other_content><mat-icon>archive</mat-icon></ng-template>
                 </button>
               </div>
                <div style="margin-left: -11px;">
