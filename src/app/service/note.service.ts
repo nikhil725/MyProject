@@ -8,7 +8,9 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class NoteService {
-
+  
+status:boolean = true;  
+  private viewSubject = new Subject<any>();
   private NoteSubject = new Subject<any>();
   constructor(private userService: UserService) { }
 
@@ -119,8 +121,12 @@ export class NoteService {
     return this.userService.deleteService('deleteimage/' + noteId);
   }
 
-    getStatus():Observable<HttpResponse<any>>
-    {
-    return this.userService.getStatus();
-    }
+   changeView(){
+    this.status = !this.status;
+    this.viewSubject.next(this.status);
+  }
+
+  getStatus(){
+    return this.viewSubject.asObservable();
+  } 
 }

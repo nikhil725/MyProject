@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, NoteService, LabelService } from '../../service';
 import { ActivatedRoute } from '@angular/router';
 import { UserNotes } from '../../object/userNotes';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-labelonnote',
   templateUrl: './labelonnote.component.html',
@@ -12,7 +14,7 @@ public id;
 public labelId:number;
 model:any;
 notes:UserNotes[];
-  constructor(private route: ActivatedRoute,private noteService: NoteService) { }
+  constructor(private route: ActivatedRoute,private routeChaneState: Router,private noteService: NoteService) { }
 
   ngOnInit() {
       this.noteService.getAllNotes().subscribe(response => {
@@ -24,5 +26,13 @@ notes:UserNotes[];
       this.id = +params['id'];
       console.log('in dynamic componenet label id :',this.id);
    });
+   //this.emptyLabelNotes();
+
+  }
+
+  emptyLabelNotes()
+  {
+    console.log("hello routing need here")
+  //  this.routeChaneState.navigate(['/login']);
   }
 }

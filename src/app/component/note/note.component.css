@@ -30,3 +30,10 @@ margin-top: -24px;
 width: 448px;
 max-height:150px;
 }
+  .list-view{
+    width: 69%;
+    margin-top: 15px;
+  }
+  .grid-view{
+    margin-top: 15px;
+  }

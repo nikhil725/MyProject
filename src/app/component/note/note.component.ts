@@ -21,7 +21,7 @@ export class NoteComponent implements OnInit {
 
   model: any = {};
   labels: Label[];
-
+  noteView      : string=localStorage.getItem('class');
   urlRes: UrlResponse;
   notes: UserNotes[];
   //colors : ColorList[];
@@ -68,10 +68,10 @@ export class NoteComponent implements OnInit {
   }
   changeGridCss() {
 
-    this.noteService.getStatus().subscribe((status) => {
-     this.marginTop = status ? "10px" : "0px";
-      this.flexSize = status ? "100%" : "30%";
-    });
+    this.noteService.getStatus().subscribe((status)=>{
+            this.noteView = status ? "list-view" : "grid-view";
+             localStorage.setItem('class',this.noteView);
+          });
   }
   openDialogForUpdate(note) {
     this.dialog.open(UpdateComponent, {

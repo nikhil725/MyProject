@@ -1,7 +1,17 @@
  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
   <div fxLayout="row wrap"  fxLayoutAlign="space-between center"  class="mat-div" fxFlex="900px"> 
+  
+    
     <div *ngFor="let note of notes | labelnote : id" [style.marginTop]="marginTop" [fxFlex]="flexSize">
-     <app-common [note]="note"></app-common>
-   </div>
+      <!-- <div *ngIf="note.length>0; else other_content"> -->
+      <app-common [note]="note"></app-common>
+   <!-- </div> -->
+    </div>
+  <div #other_content (click)="emptyLabelNotes()" >
+    gsdbsdbgsdbgsdbgsdgsdgsdgbsdg
+    <!-- [routerLink]="['/home/labelnote',label.labelId] -->
+    
+  </div>
+
   </div> 
 </div> 

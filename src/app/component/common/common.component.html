@@ -1,11 +1,14 @@
 <!-- <mat-card class="example-card" [style.background]="note.color" style=" width: max-content; align-items: 200px; MARGIN-LEFT: 200PX; MARGIN-TOP: 50PX; height: max-content "> -->
   <mat-card class="example-card" [style.background]="note.color" class="mat-design">
-        <div *ngIf= "note.image">
+    <div style="margin-left: 90%;" class="images">
+              <img [src]="fetchIcon(note)" (click)="updateNote(note,'' + !note.pin,'pin'  )">
+            </div>    
+    <div *ngIf= "note.image">
             <img class="image-class"[src]="note.imageString"/>
             <!-- <mat-icon (click)="deleteImage(note)">close</mat-icon> -->
           </div>
             <div style="margin-left: 90%;">
-              <img src="{{pinSvg}}" (click)="checkStatus(note,'true','pin')">
+              <!-- <img src="{{pinSvg}}" "> -->
             </div>
             <div (click)="openDialogForUpdate(note)" style="word-break: break-word;">
             <mat-card-header>

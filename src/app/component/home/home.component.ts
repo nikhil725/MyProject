@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
 
   changeCards(){
 
-    this.userService.gridviewToggle();
+     this.noteService.changeView();
     debugger;
   }
   

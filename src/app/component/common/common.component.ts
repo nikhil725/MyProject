@@ -203,4 +203,12 @@ export class CommonComponent implements OnInit {
     console.log('file', file);
     this.noteService.imageUpload(file, noteId);
   }
-}
+    fetchIcon(note){
+
+     if(!note.pin){
+      return '/assets/icons/pin.svg';
+    }
+
+    return '/assets/icons/unpin.svg';
+  }
+  }
