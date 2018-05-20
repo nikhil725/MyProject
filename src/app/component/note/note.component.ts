@@ -21,7 +21,7 @@ export class NoteComponent implements OnInit {
 
   model: any = {};
   labels: Label[];
-  noteView      : string=localStorage.getItem('class');
+  noteView: string=localStorage.getItem('class');
   urlRes: UrlResponse;
   notes: UserNotes[];
   //colors : ColorList[];

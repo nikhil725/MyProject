@@ -32,10 +32,12 @@
                 </div>
               </div>
             </div>
+            <div *ngIf="note.ownerId!=null"> 
             <div *ngIf="note.collaboratorName!=null">
               <mat-chip-list>
                 <mat-chip>Shared from:{{note.collaboratorName}}</mat-chip>
               </mat-chip-list>
+            </div>
             </div>
             <div mat-menu-item fxLayout="row">
                <div *ngIf="note.reminder!=null">

@@ -42,3 +42,10 @@ max-height:150px;
 max-width: 201px;
 margin-top: 15px;
 }
+
+.hidetoolbar{
+  visibility: hidden;
+}
+.openhide:hover .hidetoolbar{
+  visibility:visible;
+}

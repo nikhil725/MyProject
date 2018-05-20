@@ -13,6 +13,7 @@ export class LabelComponent implements OnInit {
   model: any = {};
   labels: Label[];
   showHide1: boolean;
+  labelImages : Array<string> = [];
 
   clearImg = "/assets/icons/clear.svg";
   deletesvg = "/assets/icons/trash.svg";
@@ -22,13 +23,20 @@ export class LabelComponent implements OnInit {
   imgSrc: string = "/assets/icons/trash.svg";
   imgSrc1: string = "/assets/icons/checkmark.png";
 
-  onMouseOut() {
-    this.imgSrc = "/assets/icons/label.svg";//plus interns genrate label icon
+ onMouseOut(i)
+  {
+   this.imgSrc = "/assets/icons/label.svg";
+   this.labelImages[i] = this.imgSrc;
+   console.log(this.labelImages , i)
   }
 
-  onMouseOver() {
-    this.imgSrc = "/assets/icons/trash.svg";//delete symbol
+  onMouseOver(i)
+  {
+    this.imgSrc = "/assets/icons/trash.svg";
+    this.labelImages[i] = this.imgSrc;
   }
+
+  
   changeStatus() {
     this.showHide1 = !this.showHide1;
   }
@@ -38,10 +46,7 @@ export class LabelComponent implements OnInit {
 
   ngOnInit() {
 
-    this.noteService.getLabels().subscribe(res => {
-      this.labels = res;
-      console.log(this.labels);
-    });
+    this.getAllLabels(); 
   }
   createLabel(): void {
     console.log(this.model);
@@ -56,6 +61,14 @@ export class LabelComponent implements OnInit {
 
     this.labelService.deleteLabel(labelId).subscribe(response =>{
     });
+  }
+
+  getAllLabels(){
+    this.noteService.getLabels().subscribe(res => {
+      this.labels = res;
+      console.log(this.labels);
+    });
+
   }
 
 }

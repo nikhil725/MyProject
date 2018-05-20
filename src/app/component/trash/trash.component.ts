@@ -12,6 +12,7 @@ export class TrashComponent implements OnInit {
   
   model : any={}; 
  notes : UserNotes[];
+  noteView : string=localStorage.getItem('class');
   constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
@@ -21,6 +22,7 @@ export class TrashComponent implements OnInit {
       this.notes = res;
       console.log(this.notes);
   });
+    this.changeGridCss();
   }
 
   deleteNote(noteId){
@@ -37,7 +39,13 @@ export class TrashComponent implements OnInit {
 
         console.log('record update', response);
     });
+  }
 
+  changeGridCss() {
 
+    this.noteService.getStatus().subscribe((status)=>{
+            this.noteView = status ? "list-view" : "grid-view";
+             localStorage.setItem('class',this.noteView);
+          });
   }
 }

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ReminderComponent implements OnInit {
 
     notes : UserNotes[];
+    noteView : string=localStorage.getItem('class');
 
   constructor(private noteService: NoteService, private router: Router) { }
 
@@ -21,8 +22,17 @@ export class ReminderComponent implements OnInit {
       this.notes = res;
       console.log(this.notes);
     });
+    this.changeGridCss();
   }
 
+  changeGridCss() {
+
+    this.noteService.getStatus().subscribe((status)=>{
+            this.noteView = status ? "list-view" : "grid-view";
+             localStorage.setItem('class',this.noteView);
+          });
+  }
+  
   reminderUpdate(note,day,field){
     
     if(day==='Today'){

@@ -34,13 +34,8 @@ export class HomeComponent implements OnInit {
          }
 
   ngOnInit() {
-    console.log('in side home');
-    this.noteService.getLabels().subscribe(res => {
-      this.labels = res;
-      console.log(this.labels);
-    });
-    this.searchText();
-    
+    this.getAllLabels();
+    this.searchText(); 
   }
 
   //This method use to search text
@@ -78,6 +73,18 @@ export class HomeComponent implements OnInit {
       this.username = response.name;
       this.useremail = response.email;
       console.log('User information', this.user);
+    });
+  }
+
+  addAccount(){
+    this.router.navigate(['/login']);
+  }
+
+  getAllLabels(){
+console.log('in side home');
+    this.noteService.getLabels().subscribe(res => {
+      this.labels = res;
+      console.log(this.labels);
     });
   }
 }

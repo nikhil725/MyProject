@@ -140,24 +140,24 @@
 <div>Pinned</div>
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="mat-div" fxFlex="900px">
-    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes | searchfilter: searchText" class={{noteView}}>
-      <div *ngIf="note.pin=== true && note.trash=== false && note.archive=== false">
+    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let note of notes | searchfilter: searchText | notePipe:{pin:true,trash:false,archive:false}" class={{noteView}}>
+      <!-- <div *ngIf="note.pin=== true && note.trash=== false && note.archive=== false"> -->
         
         <!-- <div *ngFor="let note of notes | notePipe: {Pin:true, Trash:false, Archive:false}" style="margin-left: 300px;">  -->
         <app-common [note]="note"></app-common> 
- </div>
+ <!-- </div> -->
     </div>
   </div>
 </div>
 <div>other</div>
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap"  fxLayoutAlign="space-between center"  class="mat-div" fxFlex="900px">
-    <div *ngFor="let note of notes |searchfilter:searchText">
-      <div *ngIf="note.trash=== false && note.archive=== false && note.pin=== false">
+    <div *ngFor="let note of notes |searchfilter:searchText | notePipe:{pin:false,trash:false,archive:false}">
+      <!-- <div *ngIf="note.trash=== false && note.archive=== false && note.pin=== false"> -->
         
            <app-common [note]="note"></app-common> 
         
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
