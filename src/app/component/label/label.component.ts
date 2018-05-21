@@ -68,7 +68,10 @@ export class LabelComponent implements OnInit {
       this.labels = res;
       console.log(this.labels);
     });
-
   }
 
+  refreshLabel():void{
+    this.labelService.reloadLabels();
+  
+  }
 }

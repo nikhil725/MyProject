@@ -2,16 +2,15 @@
   <div fxLayout="row wrap"  fxLayoutAlign="space-between center"  class="mat-div" fxFlex="900px"> 
   
     
-    <div *ngFor="let note of notes | labelnote : id; let i = index" [style.marginTop]="marginTop" [fxFlex]="flexSize">
-      <!-- <div *ngIf="note.length>0; else other_content"> -->
+    <div *ngFor="let note of notes | labelnote : id;" [style.marginTop]="marginTop" [fxFlex]="flexSize">
+       <!-- <div *ngIf="note.length ==0; else other_content">  -->
+         <div ng-if="(note | notePipe:{available:true}).length == 0;">
       <app-common [note]="note"></app-common>
-   <!-- </div> -->
-    </div>
-  <div #other_content (click)="emptyLabelNotes()" >
+    </div> 
+  </div>
+<div #other_content (click)="emptyLabelNotes()" >
     gsdbsdbgsdbgsdbgsdgsdgsdgbsdg
     <!-- [routerLink]="['/home/labelnote',label.labelId] -->
-    
   </div>
-
   </div> 
 </div> 
