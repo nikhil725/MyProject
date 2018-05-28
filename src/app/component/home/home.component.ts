@@ -3,9 +3,11 @@ import { LabelComponent } from '../label/label.component';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { NoteService, UserService } from '../../service';
 import { Label } from '../../object/Label';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
 import {FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms'
 import { User } from '../../object/User';
+
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,7 @@ import { User } from '../../object/User';
 export class HomeComponent implements OnInit {
 
   model: any = {};
+  public fundooNotes;
   labels: Label[];
   profilePic = "assets/icons/account.svg";
   homeForm: FormGroup;
@@ -23,14 +26,36 @@ export class HomeComponent implements OnInit {
   useremail:string;
   user: User;
   constructor(private noteService: NoteService, private dialog: MatDialog, private router: Router,
-              private builder: FormBuilder, private userService: UserService)
+              private builder: FormBuilder, private userService: UserService, private _activatedRouter: ActivatedRoute)
                {
 
             this.inputFormControl = new FormControl();
-            this.homeForm = this.builder.group({
-            
-            inputFormControl: this.inputFormControl //get home html input
+            this.homeForm = this.builder.group({inputFormControl: this.inputFormControl //get home html input
             }); 
+
+// this._activatedRouter.params.subscribe(params=>
+//   {
+// console.log("Activated Route:"+JSON.stringify(params));    
+//   })
+
+this.router.events.pipe(
+filter(events=>events instanceof NavigationEnd)
+)
+.subscribe(
+  ({url}:NavigationEnd)=>
+  {
+    console.log("Routing Url:"+url);
+    var urlsplit=url.split('/')[2];
+    console.log("Splittted URL"+urlsplit);
+    this.fundooNotes=urlsplit.toUpperCase();
+  }
+)
+
+
+
+
+
+
          }
 
   ngOnInit() {
