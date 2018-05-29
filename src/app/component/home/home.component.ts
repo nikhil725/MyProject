@@ -41,11 +41,14 @@ export class HomeComponent implements OnInit {
 this.router.events.pipe(
 filter(events=>events instanceof NavigationEnd)
 )
+
 .subscribe(
   ({url}:NavigationEnd)=>
   {
     console.log("Routing Url:"+url);
-    var urlsplit=url.split('/')[2];
+    var index=url.split('/').length;
+    console.log("Length of URL Split:"+index);
+    var urlsplit=url.split('/')[index-1];
     console.log("Splittted URL"+urlsplit);
     this.fundooNotes=urlsplit.toUpperCase();
   }

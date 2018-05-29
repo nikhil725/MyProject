@@ -29,14 +29,9 @@ public empty;
    this.route.params.subscribe(params => {
       this.id = +params['id'];
       console.log('in dynamic componenet label id :',this.id);
-      if(this.id == null){
-        this.empty="No Notes are available";
-      }
-
+     
    });
    //this.emptyLabelNotes();
-
-
   }
 
   emptyLabelNotes()
