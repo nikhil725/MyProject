@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
 this.router.events.pipe(
 filter(events=>events instanceof NavigationEnd)
 )
-
 .subscribe(
   ({url}:NavigationEnd)=>
   {
@@ -52,6 +51,8 @@ filter(events=>events instanceof NavigationEnd)
     console.log("Splittted URL"+urlsplit);
     this.fundooNotes=urlsplit.toUpperCase();
   }
+
+
 )
 
 
@@ -65,6 +66,17 @@ filter(events=>events instanceof NavigationEnd)
     this.getAllLabels();
     this.searchText(); 
   }
+
+getRouteName(label:any)
+{
+this.router.navigate(['/home/labelonnote',label.name]);
+localStorage.setItem("labelid",label.labelId);
+}
+
+
+
+
+
 
   //This method use to search text
   searchText(){

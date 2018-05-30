@@ -160,7 +160,7 @@
       </div>
       <div *ngFor="let label of labels">
         <div>
-          <button [routerLink]="['/home/labelonnote',label.name]" mat-menu-item>
+          <button  (click)="getRouteName(label)"  mat-menu-item>
                 <mat-icon>label</mat-icon>
                 <span>{{label.name}}</span>
             </button>

@@ -6,7 +6,7 @@
        <!-- <div *ngIf="note.length ==0; else other_content">  -->
          <div ng-if="(note | notePipe:{available:true}).length == 0;">
       <app-common [note]="note"></app-common>
-    </div> 
+    </div>
   </div>
 <div #other_content (click)="emptyLabelNotes()" >
     {{empty}}
@@ -14,3 +14,7 @@
   </div>
   </div> 
 </div> 
+
+<div *ngIf="hide">
+  <h1>{{empty}}</h1>
+</div>  

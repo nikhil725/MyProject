@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LabelnotePipe implements PipeTransform {
 
-    transform(noteArray: Array<any>, labelId:number): any {
+   transform(noteArray: Array<any>, labelId:number): any {
     if(!noteArray) return [];
     return noteArray.filter((noteObj)=>{
       if(noteObj.labels.length == 0)
@@ -14,8 +14,6 @@ export class LabelnotePipe implements PipeTransform {
         return labelObj.labelId == labelId;
       })
     })
-    
-  
 }
 
 }
